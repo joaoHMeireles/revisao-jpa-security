@@ -1,6 +1,7 @@
 package br.senai.sc.revisao.security;
 
 import br.senai.sc.revisao.security.service.UsuarioServiceSecurity;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@AllArgsConstructor
 public class AutenticacaoConfig {
 
     @Autowired
@@ -27,7 +29,7 @@ public class AutenticacaoConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests()
-                .requestMatchers("/usuario*").permitAll()
+                .requestMatchers("/usuario", "/usuario/*").permitAll()
                 .anyRequest().authenticated();
         httpSecurity.formLogin().permitAll();
         httpSecurity.logout().permitAll();
