@@ -29,7 +29,7 @@ public class AutenticacaoConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests()
-                .requestMatchers("/usuario", "/usuario/*").permitAll()
+                .requestMatchers("/usuario", "/usuario*","/usuario/*").permitAll()
                 .anyRequest().authenticated();
         httpSecurity.formLogin().permitAll();
         httpSecurity.logout().permitAll();
